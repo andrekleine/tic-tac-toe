@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: 'Open-Sans', sans-serif;
+  color: rgb(44, 41, 44);
+  background-color: rgb(247, 239, 247);
+  --color-btn-base: rgb(140, 0, 255);
+  --color-btn-dark: rgb(79, 10, 190);
+  --color-btn-light: rgb(230, 201, 252);
+}
+
+#main-header {
+  background-color: var(--color-btn-base);
+  color: white;
+  padding: 2rem 5%;
+  text-align: center;
+}
+
+.btn {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--color-btn-base);
+  border: 1px solid var(--color-btn-base);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-alt {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-btn-base);
+}
+
+.btn:hover {
+  background-color: var(--color-btn-dark);
+  border-color: var(--color-btn-dark);
+}
+
+.btn-alt:hover {
+  background-color: var(--color-btn-light);
+  border-color: transparent;
+}

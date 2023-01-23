@@ -6,15 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-    <header>
+    <header id="main-header">
         <h1>Play Tic-tac-toe</h1>
         <p>Built with HTML, CSS, Javascript and - of course - lots of love!</p>
     </header>
     <main>
-        <aside>
+        <aside>            
             <h2>Choose your name</h2>
             <form>
                 <div>
@@ -22,10 +26,10 @@
                     <input type="text" name="username" id="playername">
                 </div>
                 <div>
-                    <button type="button">Cancel</button>
-                    <button type="submit">Confirm</button>
+                    <button type="button" class="btn btn-alt">Cancel</button>
+                    <button type="submit" class="btn">Confirm</button>
                 </div>
-            </form>            
+            </form>
         </aside>
         <section id="game-config">
             <ol>
@@ -34,7 +38,7 @@
                         <h2>Player 1</h2>
                         <h3>PLAYER NAME</h3>
                         <p>X</p>
-                        <button>Edit</button>
+                        <button class="btn btn-alt">Edit</button>
                     </article>
                 </li>
                 <li>
@@ -42,11 +46,11 @@
                         <h2>Player 2</h2>
                         <h3>PLAYER NAME</h3>
                         <p>O</p>
-                        <button>Edit</button>
+                        <button class="btn btn-alt">Edit</button>
                     </article>
                 </li>
             </ol>
-            <button>Start New Game</button>
+            <button class="btn">Start New Game</button>
         </section>
         <section id="active-game">
             <article>
