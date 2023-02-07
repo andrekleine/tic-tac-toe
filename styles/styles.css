@@ -1,9 +1,8 @@
 * {
-  margin: 0;  
   box-sizing: border-box;
 }
 
-body {  
+body {
   font-family: 'Open-Sans', sans-serif;
   color: rgb(44, 41, 44);
   background-color: rgb(247, 239, 247);
@@ -13,6 +12,7 @@ body {
   --color-player-name: rgb(50, 5, 87);
   --color-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   --color-selected: rgb(112, 13, 204);
+  --color-error: rgb(136, 2, 2);
 }
 
 #main-header {
