@@ -1,8 +1,31 @@
+function resetGameStatus() {
+  activePlayer = 0;
+  currentRound = 1;
+  gameIsOver = false;
+  gameOverElement.firstElementChild.innerHTML =
+    'You won, <span id="winner-name">PLAYER NAME</span>!';
+  gameOverElement.style.display = 'none';
+
+  let gameBoardIndex = 0;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      gameData[i][j] = 0;
+      const gameBoardItemEl = gameFieldEl.children[gameBoardIndex];
+      gameBoardItemEl.textContent = '';
+      gameBoardItemEl.classList.remove('disabled');
+      gameBoardIndex++;
+    }
+  }
+}
+
 function startNewGame() {
   if (players[0].name === '' || players[1].name === '') {
     alert('Please set both player names before starting the game!');
     return;
   }
+
+  resetGameStatus();
+
   activePlayerNameEl.textContent = players[activePlayer].name;
   gameAreaEl.style.display = 'block';
 }
@@ -17,7 +40,7 @@ function switchPlayer() {
 }
 
 function selectGameField(event) {
-  if (event.target.tagName !== 'LI') {
+  if (event.target.tagName !== 'LI' || gameIsOver) {
     return;
   }
   const selectedField = event.target;
@@ -33,8 +56,14 @@ function selectGameField(event) {
   event.target.classList.add('disabled');
 
   gameData[selectedRow][selectedColumn] = activePlayer + 1;
-  console.log(gameData);
 
+  const winnerId = checkForGameOver();
+
+  if (winnerId !== 0) {
+    endGame(winnerId);
+  }
+
+  currentRound++;
   switchPlayer();
 }
 
@@ -59,6 +88,38 @@ function checkForGameOver() {
       return gameData[0][i];
     }
   }
-  // Checking diagonals for equality
-  //  VIDEO: 17:10
+  // Diagonals: top left to bottom right
+  if (
+    gameData[0][0] > 0 &&
+    gameData[0][0] === gameData[1][1] &&
+    gameData[1][1] === gameData[2][2]
+  ) {
+    return gameData[0][0];
+  }
+  // Diagonals: bottom left to top right
+  if (
+    gameData[2][0] > 0 &&
+    gameData[2][0] === gameData[1][1] &&
+    gameData[1][1] === gameData[0][2]
+  ) {
+    return gameData[2][0];
+  }
+
+  if (currentRound === 9) {
+    return -1;
+  }
+
+  return 0;
+}
+
+function endGame(winnerId) {
+  gameIsOver = true;
+  gameOverElement.style.display = 'block';
+  if (winnerId > 0) {
+    const winnerName = players[winnerId - 1].name;
+    gameOverElement.firstElementChild.firstElementChild.textContent =
+      winnerName;
+  } else {
+    gameOverElement.firstElementChild.textContent = `It's a draw!`;
+  }
 }
